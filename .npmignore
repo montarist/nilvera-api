@@ -1,0 +1,11 @@
+# Exclude dev tools and test files
+node_modules
+tests
+__tests__
+.eslintrc.js
+eslint.config.js
+jest.config.js
+babel.config.js
+*.spec.js
+*.test.js
+*.test.mjs
