@@ -1,40 +1,31 @@
 {
-	"name": "logo-isbasi-api",
+	"name": "logo-isbasi-api-ts",
 	"version": "1.0.0",
-	"description": "Logo Isbasi API client for Node.js",
 	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
-	"files": [
-		"dist"
-	],
-	"devDependencies": {
-		"@types/jest": "^29.5.2",
-		"jest": "^29.5.0",
-		"ts-jest": "^29.1.0",
-		"ts-node": "^10.9.1",
-		"tsup": "^6.7.0",
-		"typescript": "^5.1.3"
-	},
 	"scripts": {
-		"build": "tsup",
+		"build": "tsc",
 		"test": "jest",
-		"lint": "eslint 'src/**' 'tests/**'",
-		"lint:fix": "eslint --fix 'src/**' 'tests/**'",
-		"format": "prettier --write 'src/**' 'tests/**'",
-		"format-check": "prettier --check 'src/**' 'tests/**'",
-		"prepare": "husky install"
+		"lint": "eslint src/**/*.ts",
+		"prepare": "npm run build"
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/montarist/logo-isbasi-api.git"
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"axios": "^1.7.9"
 	},
-	"keywords": [
-		"logo-isbasi",
-		"api",
-		"client",
-		"nodejs"
-	],
-	"author": "Montarist Bilisim",
-	"license": "MIT"
+	"devDependencies": {
+		"@types/jest": "^29.0.0",
+		"@typescript-eslint/eslint-plugin": "^5.0.0",
+		"@typescript-eslint/parser": "^5.0.0",
+		"@types/node": "^22.10.2",
+		"eslint": "^8.50.0",
+		"husky": "^9.1.7",
+		"jest": "^29.7.0",
+		"prettier": "^3.4.2",
+		"ts-jest": "^29.2.5",
+		"typescript": "^5.7.2"
+	}
 }
