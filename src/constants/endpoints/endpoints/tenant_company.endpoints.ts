@@ -1,0 +1,18 @@
+export const TENANT_COMPANY_ENDPOINTS = {
+  GET_COMPANY_TENANTID: "/api/v1.0/company/{tenantId}",
+  PUT_COMPANY_TENANTID: "/api/v1.0/company/{tenantId}",
+  POST_COMPANY_EAPORTAL_USER_INFORMATION: "/api/v1.0/company/eaportal-user-information",
+  GET_COMPANY_TENANTID_PREVIEW: "/api/v1.0/company/{tenantId}/preview",
+  PUT_COMPANY_UPDATECOMPANYPHONENUMBER: "/api/v1.0/company/updatecompanyphonenumber",
+  POST_COMPANY_EINVOICECODE: "/api/v1.0/company/einvoicecode",
+  GET_COMPANY_EINVOICECODE: "/api/v1.0/company/einvoicecode",
+  POST_COMPANY_CHECKGIBUSER: "/api/v1.0/company/checkGibUser",
+  POST_COMPANY_VALIDATETAXNUMBER: "/api/v1.0/company/validateTaxNumber",
+  GET_COMPANY_PROMOCODE_PROMOCODE: "/api/v1.0/company/promoCode/{promoCode}",
+  GET_COMPANY_TAX_NO_GSTIN: "/api/v1.0/company/tax-no/{gstin}",
+  GET_COMPANY_REGISTRATIONTYPE_TENANTID: "/api/v1.0/company/registrationType/{tenantId}",
+  POST_COMPANY_UPDATETENANTFROMSUBSCRIPTIONPAGE: "/api/v1.0/company/UpdateTenantFromSubscriptionPage",
+  POST_COMPANY_UPDATETENANTSTATE: "/api/v1.0/company/UpdateTenantState",
+  POST_COMPANY_CREATE_ELOGO_PORTAL_ORDER: "/api/v1.0/company/create-elogo-portal-order",
+  POST_COMPANY_COMPAREGIBUSER: "/api/v1.0/company/compareGibUser",
+} as const;

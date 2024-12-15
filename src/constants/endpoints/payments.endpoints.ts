@@ -1,0 +1,27 @@
+import { BASE_API } from './base.endpoints';
+
+export const PAYMENT_PAYMENTS_ENDPOINTS = {
+	SAVE_OR_UPDATE_ORDER_PAYMENT: `${BASE_API}/payments/orderpayment`,
+	CREATE_ONLINE_PAYMENT_TRANSACTION: (conversationId: string): string => `${BASE_API}/payments/onlinepayment/${conversationId}`,
+	INSERT_OR_UPDATE_INVOICE_PAYMENT: `${BASE_API}/payments/invoicepayment`,
+	GET_PAYMENT_INVOICE_LIST: `${BASE_API}/payments/paymentinvoicelist`,
+	GET_SMM_PAYMENT_LIST: `${BASE_API}/payments/smm/transactions`,
+	GET_INVOICE_PAYMENT_LIST: `${BASE_API}/payments/invoice/transactions`,
+	GET_ORDER_PAYMENT_LIST: `${BASE_API}/payments/order/transactions`,
+	DELETE_SAFE_TRANSACTION_BY_ID: (id: number): string => `${BASE_API}/payments/safe/transaction/${id}`,
+	GET_SAFE_AND_BANK_CASH_TRANSACTION_DETAIL_BY_ID: (id: string): string => `${BASE_API}/payments/SafeAndBankCashTransactionDetailById?id=${id}`,
+	DELETE_RECONCILIATION: (id: string): string => `${BASE_API}/payments/bank/deletereconciliation/${id}`,
+	E_LOGO_TEST_ASYNC: `${BASE_API}/payments/eLogoTestAsync`,
+	INSERT_OR_UPDATE_TRANSACTION: `${BASE_API}/payments/transaction/transaction`,
+	DO_DETAILED_RECONCILIATION: `${BASE_API}/payments/bank/dodetailedreconciliation`,
+	GET_SAFE_AND_BANK_CASH_TRANSACTION_DETAIL_LIST_PREVIEW: (id: string): string => `${BASE_API}/payments/SafeAndBankCashTransactionDetailById/Preview?id=${id}`,
+	GET_BANK_LIST_TOTAL: `${BASE_API}/payments/getbankstotal`,
+	GET_FIRM_TRANSACTION_DATA_LIST: `${BASE_API}/payments/firmtransactiondetail`,
+	GET_SMM_TRANSACTION: (id: number): string => `${BASE_API}/payments/smm/${id}`,
+	GET_SAFES_TOTAL: `${BASE_API}/payments/getsafestotal`,
+	GET_SAFE_AND_BANK_CASH_TRANSACTION_DETAIL_FILTER_PREVIEW: (id: string): string => `${BASE_API}/payments/SafeAndBankCashTransactionDetailFilter/Preview?id=${id}`,
+	GET_RECONCILIATION_LIST: `${BASE_API}/payments/bank/reconciliationlist`,
+	GET_RECONCILIATION_DETAIL_LIST: (id: string): string => `${BASE_API}/payments/bank/reconciliationdetail/${id}`,
+	GET_INVOICE_PAYMENT_TRANSACTION_LIST: (invoiceId: number): string => `${BASE_API}/payments/invoice/transactions/${invoiceId}`,
+	DELETE_BANK_TRANSACTION_BY_ID: (id: number, type: string): string => `${BASE_API}/payments/safe/transaction/${id}?type=${type}`,
+} as const;
