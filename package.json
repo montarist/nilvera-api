@@ -7,20 +7,21 @@
 		"build": "tsc",
 		"test": "jest",
 		"lint": "eslint src/**/*.ts",
-		"prepare": "npm run build"
+		"prepare": "npm run build",
+		"format": "prettier --write \"src/**/*.ts\""
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC",
+	"license": "MIT",
 	"description": "",
 	"dependencies": {
 		"axios": "^1.7.9"
 	},
 	"devDependencies": {
-		"@types/jest": "^29.0.0",
+		"@types/jest": "^29.5.14",
+		"@types/node": "^22.10.2",
 		"@typescript-eslint/eslint-plugin": "^5.0.0",
 		"@typescript-eslint/parser": "^5.0.0",
-		"@types/node": "^22.10.2",
 		"eslint": "^8.50.0",
 		"husky": "^9.1.7",
 		"jest": "^29.7.0",

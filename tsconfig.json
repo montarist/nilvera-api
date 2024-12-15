@@ -4,8 +4,14 @@
 		"module": "CommonJS",
 		"declaration": true,
 		"outDir": "./dist",
+		"rootDir": "./src",
 		"strict": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"typeRoots": ["./node_modules/@types"],
+		"types": ["jest", "node"],
+		"resolveJsonModule": true
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"]
 }

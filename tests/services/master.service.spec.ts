@@ -28,7 +28,7 @@ describe('MasterService', () => {
 			const countryName = 'Turkey';
 			await masterService.getCities(countryName);
 			expect(mockApiClient.post).toHaveBeenCalledWith('/api/v1.0/master/cities', {
-				filters: [{ columnName: 'countryName', operator: 'IsEqualTo', value: countryName }],
+				filters: [{ columnName: 'country', operator: 'IsEqualTo', value: countryName }],
 			});
 		});
 	});
