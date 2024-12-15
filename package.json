@@ -1,5 +1,5 @@
 {
-	"name": "logo-isbasi-api-ts",
+	"name": "@montarist/logo-isbasi-api",
 	"version": "1.0.0",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
