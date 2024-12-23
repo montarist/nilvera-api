@@ -1,5 +1,5 @@
 {
-	"name": "@montarist/logo-isbasi-api",
+	"name": "@montarist/nilvera-api",
 	"version": "1.0.0",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
