@@ -1,6 +1,7 @@
 {
 	"name": "@montarist/nilvera-api",
 	"version": "1.0.0",
+	"description": "An unofficial SDK for integrating with Nilvera e-Invoice, e-Archive services",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
@@ -10,10 +11,28 @@
 		"prepare": "npm run build",
 		"format": "prettier --write \"src/**/*.ts\""
 	},
-	"keywords": [],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/montarist/nilvera-api.git"
+	},
+	"keywords": [
+		"nilvera",
+		"e-invoice",
+		"e-archive",
+		"e-ledger",
+		"typescript",
+		"sdk",
+		"api",
+		"einvoice",
+		"earchive",
+		"eledger"
+	],
 	"author": "Montarist Bilisim",
 	"license": "MIT",
-	"description": "",
+	"bugs": {
+		"url": "https://github.com/montarist/nilvera-api/issues"
+	},
+	"homepage": "https://github.com/montarist/nilvera-api#readme",
 	"dependencies": {
 		"axios": "^1.7.9"
 	},
@@ -28,5 +47,16 @@
 		"prettier": "^3.4.2",
 		"ts-jest": "^29.2.5",
 		"typescript": "^5.7.2"
+	},
+	"files": [
+		"dist",
+		"LICENSE",
+		"README.md"
+	],
+	"engines": {
+		"node": ">=14.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }
