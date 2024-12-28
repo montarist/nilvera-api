@@ -3,6 +3,7 @@ import {
 	CreateBulkDraftRequest,
 	CreateDraftRequest,
 	CreateDraftResponse,
+	DraftConfirmRequest,
 	DraftModelResponse,
 	DraftRequest,
 	DraftResponse,
@@ -14,10 +15,6 @@ import {
 } from '../constants/types';
 import { BaseService } from './base.service';
 
-/**
- * DraftEInvoiceService
- * Taslak faturalarla ilgili işlemleri yöneten servis.
- */
 export class DraftEInvoiceService extends BaseService {
 	/**
 	 * Taslak faturaları listelemek için API'ye istek gönderir.
@@ -126,12 +123,12 @@ export class DraftEInvoiceService extends BaseService {
 
 	/**
 	 * Taslak faturayı onaylayıp gönderir.
-	 * @param {string[]} uuids - Gönderilecek taslak faturaların UUID listesi
+	 * @param {DraftConfirmRequest[]} drafts - Gönderilecek taslak faturaların bilgileri
 	 * @returns {Promise<string[]>} - Başarı durumunda dönen yanıt (ör. başarılı işlem UUID'leri)
 	 */
-	async confirmAndSendDrafts(uuids: string[]): Promise<string[]> {
+	async confirmAndSendDrafts(drafts: DraftConfirmRequest[]): Promise<string[]> {
 		const url = EINVOICE_ENDPOINTS.DRAFT.CONFIRM_AND_SEND;
-		return this.apiClient.post<string[]>(url, uuids);
+		return this.apiClient.post<string[]>(url, drafts);
 	}
 
 	/**
