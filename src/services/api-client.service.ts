@@ -51,6 +51,8 @@ export class ApiClient {
 				curl += `\n--data-raw '${data}'`;
 			}
 
+			console.log(curl);
+
 			Object.entries(headers).forEach(([key, value]) => {
 				config.headers.set(key, value as string);
 			});

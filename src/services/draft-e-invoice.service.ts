@@ -151,7 +151,12 @@ export class DraftEInvoiceService extends BaseService {
 	 */
 	async createDraft(createDraftRequest: CreateDraftRequest): Promise<CreateDraftResponse> {
 		const url = EINVOICE_ENDPOINTS.DRAFT.CREATE;
-		return this.apiClient.post<CreateDraftResponse>(url, createDraftRequest);
+
+		return this.apiClient.post<CreateDraftResponse>(url, createDraftRequest, {
+			headers: {
+				Accept: 'text/plain',
+			},
+		});
 	}
 
 	/**

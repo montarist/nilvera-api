@@ -14,10 +14,10 @@ export class NilveraApiClient {
 
 	/**
 	 * @constructor
-	 * @param {string} apiKey - The API key for authentication
 	 * @param {string} baseUrl - Base URL of the Nilvera API
+	 * @param {string} apiKey - The API key for authentication
 	 */
-	constructor(apiKey: string, baseUrl: string) {
+	constructor(baseUrl: string, apiKey: string) {
 		this.apiClient = new ApiClient(baseUrl, apiKey);
 	}
 

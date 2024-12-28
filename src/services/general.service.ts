@@ -14,4 +14,14 @@ export class GeneralService extends BaseService {
 		const url = GENERAL_ENDPOINTS.EXCHANGE_RATE.GET;
 		return this.apiClient.get<ExchangeRateResponse>(url);
 	}
+
+	/**
+	 * Mükellefin e-fatura mükellefi olup olmadığını kontrol eder.
+	 * @param {string} taxNumber - Vergi numarası
+	 * @returns {Promise<boolean>} - Mükellefin e-fatura mükellefi olup olmadığı
+	 */
+	async checkIfGlobalCustomer(taxNumber: string): Promise<any[]> {
+		const url = GENERAL_ENDPOINTS.GLOBAL_COMPANY.CHECK_BY_TAX(taxNumber);
+		return this.apiClient.get<any[]>(url);
+	}
 }

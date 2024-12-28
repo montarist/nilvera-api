@@ -115,4 +115,34 @@ export class EArchiveService extends BaseService {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.CREATE_BULK;
 		return this.apiClient.post<string[]>(url, createBulkRequest);
 	}
+
+	/**
+	 * Faturanın HTML formatını indirir.
+	 * @param {string} uuid - HTML formatı istenen faturanın UUID'si
+	 * @returns {Promise<string>} - Faturanın HTML içeriği
+	 */
+	async getInvoiceHtml(uuid: string): Promise<string> {
+		const url = EARCHIVE_ENDPOINTS.INVOICES.HTML(uuid);
+		return this.apiClient.get<string>(url);
+	}
+
+	/**
+	 * Faturanın PDF formatını indirir.
+	 * @param {string} uuid - PDF formatı istenen faturanın UUID'si
+	 * @returns {Promise<string>} - Faturanın PDF içeriği (Base64 string)
+	 */
+	async getInvoicePdf(uuid: string): Promise<Buffer> {
+		const url = EARCHIVE_ENDPOINTS.INVOICES.PDF(uuid);
+		return this.apiClient.get<Buffer>(url);
+	}
+
+	/**
+	 * Faturanın XML formatını indirir.
+	 * @param {string} uuid - XML formatı istenen faturanın UUID'si
+	 * @returns {Promise<string>} - Faturanın XML içeriği
+	 */
+	async getInvoiceXml(uuid: string): Promise<string> {
+		const url = EARCHIVE_ENDPOINTS.INVOICES.XML(uuid);
+		return this.apiClient.get<string>(url);
+	}
 }
