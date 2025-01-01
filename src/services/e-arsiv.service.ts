@@ -8,141 +8,142 @@ import {
 	EARCHIVE_ENDPOINTS,
 	ExportType,
 } from '../constants';
+import { ApiResponse } from '../types';
 import { BaseService } from './base.service';
 
 /**
  * EArchiveService
- * Taslak faturalarla ilgili işlemleri yöneten servis.
+ * Service for managing e-archive invoice operations.
  */
 export class EArchiveService extends BaseService {
 	/**
-	 * Taslak faturaları listeler.
-	 * @param {DraftInvoiceRequest} params - Taslak faturaları listelemek için sorgu parametreleri
-	 * @returns {Promise<DraftInvoiceResponse>} - Taslak faturaların yanıtı
+	 * Lists draft invoices.
+	 * @param {DraftInvoiceRequest} params - Query parameters for listing draft invoices
+	 * @returns {Promise<ApiResponse<DraftEArchiveInvoiceResponse>>} - Draft invoices response with curl command
 	 */
-	async listDraftInvoices(params?: DraftEArchiveInvoiceRequest): Promise<DraftEArchiveInvoiceResponse> {
+	async listDraftInvoices(params?: DraftEArchiveInvoiceRequest): Promise<ApiResponse<DraftEArchiveInvoiceResponse>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.LIST;
-		return this.apiClient.get<DraftEArchiveInvoiceResponse>(url, params);
+		return await this.apiClient.get<DraftEArchiveInvoiceResponse>(url, params);
 	}
 
 	/**
-	 * Taslak faturaları toplu olarak siler.
-	 * @param {string[]} uuids - Silinecek taslak faturaların UUID listesi
-	 * @returns {Promise<boolean>} - İşlem sonucunu belirten boolean değer
+	 * Deletes draft invoices in bulk.
+	 * @param {string[]} uuids - List of UUIDs of draft invoices to be deleted
+	 * @returns {Promise<ApiResponse<boolean>>} - Operation result with curl command
 	 */
-	async deleteDraftInvoices(uuids: string[]): Promise<boolean> {
+	async deleteDraftInvoices(uuids: string[]): Promise<ApiResponse<boolean>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.DELETE;
-		return this.apiClient.delete<boolean>(url, uuids);
+		return await this.apiClient.delete<boolean>(url, uuids);
 	}
 
 	/**
-	 * Taslağın HTML formatını indirir.
-	 * @param {string} uuid - HTML formatı istenen taslak faturanın UUID'si
-	 * @returns {Promise<string>} - Taslak faturanın HTML içeriği
+	 * Downloads the HTML format of the draft invoice.
+	 * @param {string} uuid - UUID of the draft invoice to get HTML format
+	 * @returns {Promise<ApiResponse<string>>} - HTML content of the draft invoice with curl command
 	 */
-	async getDraftInvoiceHtml(uuid: string): Promise<string> {
+	async getDraftInvoiceHtml(uuid: string): Promise<ApiResponse<string>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.HTML(uuid);
-		return this.apiClient.get<string>(url);
+		return await this.apiClient.get<string>(url);
 	}
 
 	/**
-	 * Taslağın PDF formatını indirir.
-	 * @param {string} uuid - PDF formatı istenen taslak faturanın UUID'si
-	 * @returns {Promise<string>} - Taslak faturanın PDF içeriği (Base64 string)
+	 * Downloads the PDF format of the draft invoice.
+	 * @param {string} uuid - UUID of the draft invoice to get PDF format
+	 * @returns {Promise<ApiResponse<string>>} - PDF content of the draft invoice (Base64 string) with curl command
 	 */
-	async getDraftInvoicePdf(uuid: string): Promise<string> {
+	async getDraftInvoicePdf(uuid: string): Promise<ApiResponse<string>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.PDF(uuid);
-		return this.apiClient.get<string>(url);
+		return await this.apiClient.get<string>(url);
 	}
 
 	/**
-	 * Taslağın XML formatını indirir.
-	 * @param {string} uuid - XML formatı istenen taslak faturanın UUID'si
-	 * @returns {Promise<string>} - Taslak faturanın XML içeriği
+	 * Downloads the XML format of the draft invoice.
+	 * @param {string} uuid - UUID of the draft invoice to get XML format
+	 * @returns {Promise<ApiResponse<string>>} - XML content of the draft invoice with curl command
 	 */
-	async getDraftInvoiceXml(uuid: string): Promise<string> {
+	async getDraftInvoiceXml(uuid: string): Promise<ApiResponse<string>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.XML(uuid);
-		return this.apiClient.get<string>(url);
+		return await this.apiClient.get<string>(url);
 	}
 
 	/**
-	 * Taslağın modeli bilgilerini getirir.
-	 * @param {string} uuid - Model bilgisi istenen taslak faturanın UUID'si
-	 * @returns {Promise<ArchiveInvoiceModelResponse>} - Taslak faturanın modeli
+	 * Gets the model information of the draft invoice.
+	 * @param {string} uuid - UUID of the draft invoice to get model information
+	 * @returns {Promise<ApiResponse<ArchiveInvoiceModelResponse>>} - Model of the draft invoice with curl command
 	 */
-	async getDraftInvoiceModel(uuid: string): Promise<ArchiveInvoiceModelResponse> {
+	async getDraftInvoiceModel(uuid: string): Promise<ApiResponse<ArchiveInvoiceModelResponse>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.MODEL(uuid);
-		return this.apiClient.get<ArchiveInvoiceModelResponse>(url);
+		return await this.apiClient.get<ArchiveInvoiceModelResponse>(url);
 	}
 
 	/**
-	 * Taslak faturaları toplu olarak dışarı aktarır.
-	 * @param {string[]} uuids - Dışarı aktarılacak faturaların UUID listesi
-	 * @param {ExportType} fileType - Dışa aktarım türü (Xml, Pdf, OnePagePdf)
-	 * @returns {Promise<string>} - Dışa aktarılan belgelerin URL'si
+	 * Exports draft invoices in bulk.
+	 * @param {string[]} uuids - List of UUIDs of invoices to be exported
+	 * @param {ExportType} fileType - Export type (Xml, Pdf, OnePagePdf)
+	 * @returns {Promise<ApiResponse<string>>} - URL of exported documents with curl command
 	 */
-	async exportDraftInvoices(uuids: string[], fileType: ExportType): Promise<string> {
+	async exportDraftInvoices(uuids: string[], fileType: ExportType): Promise<ApiResponse<string>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.EXPORT(fileType);
-		return this.apiClient.post<string>(url, uuids);
+		return await this.apiClient.post<string>(url, uuids);
 	}
 
 	/**
-	 * Taslak faturayı onaylayıp gönderir.
-	 * @param {string[]} uuids - Onaylanıp gönderilecek taslak faturaların UUID listesi
-	 * @returns {Promise<string>} - İşlem sonucunda dönen mesaj
+	 * Confirms and sends draft invoices.
+	 * @param {string[]} uuids - List of UUIDs of draft invoices to be confirmed and sent
+	 * @returns {Promise<ApiResponse<string>>} - Response message with curl command
 	 */
-	async confirmAndSendDraftInvoices(uuids: string[]): Promise<string> {
+	async confirmAndSendDraftInvoices(uuids: string[]): Promise<ApiResponse<string>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.CONFIRM_AND_SEND;
-		return this.apiClient.post<string>(url, uuids);
+		return await this.apiClient.post<string>(url, uuids);
 	}
 
 	/**
-	 * Yeni bir taslak fatura oluşturur.
-	 * @param {CreateDraftInvoiceRequest} createDraftRequest - Oluşturulacak taslak fatura detayları
-	 * @returns {Promise<CreateDraftInvoiceResponse>} - Oluşturulan taslak faturanın UUID ve fatura numarası
+	 * Creates a new draft invoice.
+	 * @param {CreateDraftInvoiceRequest} createDraftRequest - Details of the draft invoice to be created
+	 * @returns {Promise<ApiResponse<CreateDraftEArchiveInvoiceResponse>>} - UUID and invoice number of created draft invoice with curl command
 	 */
-	async createDraftInvoice(createDraftRequest: CreateDraftEArchiveInvoiceRequest): Promise<CreateDraftEArchiveInvoiceResponse> {
+	async createDraftInvoice(createDraftRequest: CreateDraftEArchiveInvoiceRequest): Promise<ApiResponse<CreateDraftEArchiveInvoiceResponse>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.CREATE;
-		return this.apiClient.post<CreateDraftEArchiveInvoiceResponse>(url, createDraftRequest);
+		return await this.apiClient.post<CreateDraftEArchiveInvoiceResponse>(url, createDraftRequest);
 	}
 
 	/**
-	 * Toplu olarak taslak faturalar oluşturur.
-	 * @param {CreateBulkDraftInvoiceRequest} createBulkRequest - Toplu taslak faturaların detaylarını içeren istek
-	 * @returns {Promise<string[]>} - Başarı durumunda oluşturulan faturaların UUID'leri
+	 * Creates draft invoices in bulk.
+	 * @param {CreateBulkDraftInvoiceRequest} createBulkRequest - Request containing details of bulk draft invoices
+	 * @returns {Promise<ApiResponse<string[]>>} - List of UUIDs of successfully created invoices with curl command
 	 */
-	async createBulkDraftInvoices(createBulkRequest: CreateBulkDraftInvoiceRequest): Promise<string[]> {
+	async createBulkDraftInvoices(createBulkRequest: CreateBulkDraftInvoiceRequest): Promise<ApiResponse<string[]>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.CREATE_BULK;
-		return this.apiClient.post<string[]>(url, createBulkRequest);
+		return await this.apiClient.post<string[]>(url, createBulkRequest);
 	}
 
 	/**
-	 * Faturanın HTML formatını indirir.
-	 * @param {string} uuid - HTML formatı istenen faturanın UUID'si
-	 * @returns {Promise<string>} - Faturanın HTML içeriği
+	 * Downloads the HTML format of the invoice.
+	 * @param {string} uuid - UUID of the invoice to get HTML format
+	 * @returns {Promise<ApiResponse<string>>} - HTML content of the invoice with curl command
 	 */
-	async getInvoiceHtml(uuid: string): Promise<string> {
+	async getInvoiceHtml(uuid: string): Promise<ApiResponse<string>> {
 		const url = EARCHIVE_ENDPOINTS.INVOICES.HTML(uuid);
-		return this.apiClient.get<string>(url);
+		return await this.apiClient.get<string>(url);
 	}
 
 	/**
-	 * Faturanın PDF formatını indirir.
-	 * @param {string} uuid - PDF formatı istenen faturanın UUID'si
-	 * @returns {Promise<string>} - Faturanın PDF içeriği (Base64 string)
+	 * Downloads the PDF format of the invoice.
+	 * @param {string} uuid - UUID of the invoice to get PDF format
+	 * @returns {Promise<ApiResponse<Buffer>>} - PDF content of the invoice with curl command
 	 */
-	async getInvoicePdf(uuid: string): Promise<Buffer> {
+	async getInvoicePdf(uuid: string): Promise<ApiResponse<Buffer>> {
 		const url = EARCHIVE_ENDPOINTS.INVOICES.PDF(uuid);
-		return this.apiClient.get<Buffer>(url);
+		return await this.apiClient.get<Buffer>(url);
 	}
 
 	/**
-	 * Faturanın XML formatını indirir.
-	 * @param {string} uuid - XML formatı istenen faturanın UUID'si
-	 * @returns {Promise<string>} - Faturanın XML içeriği
+	 * Downloads the XML format of the invoice.
+	 * @param {string} uuid - UUID of the invoice to get XML format
+	 * @returns {Promise<ApiResponse<string>>} - XML content of the invoice with curl command
 	 */
-	async getInvoiceXml(uuid: string): Promise<string> {
+	async getInvoiceXml(uuid: string): Promise<ApiResponse<string>> {
 		const url = EARCHIVE_ENDPOINTS.INVOICES.XML(uuid);
-		return this.apiClient.get<string>(url);
+		return await this.apiClient.get<string>(url);
 	}
 }

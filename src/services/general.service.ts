@@ -1,27 +1,28 @@
 import { ExchangeRateResponse, GENERAL_ENDPOINTS } from '../constants';
+import { ApiResponse } from '../types';
 import { BaseService } from './base.service';
 
 /**
  * GeneralService
- * Genel işlemleri yöneten servis.
+ * Service for managing general operations.
  */
 export class GeneralService extends BaseService {
 	/**
-	 * Döviz kurlarını getirir.
-	 * @returns {Promise<ExchangeRateResponse>} - Döviz kurları bilgisi
+	 * Gets exchange rates.
+	 * @returns {Promise<ApiResponse<ExchangeRateResponse>>} - Exchange rates information with curl command
 	 */
-	async getExchangeRates(): Promise<ExchangeRateResponse> {
+	async getExchangeRates(): Promise<ApiResponse<ExchangeRateResponse>> {
 		const url = GENERAL_ENDPOINTS.EXCHANGE_RATE.GET;
-		return this.apiClient.get<ExchangeRateResponse>(url);
+		return await this.apiClient.get<ExchangeRateResponse>(url);
 	}
 
 	/**
-	 * Mükellefin e-fatura mükellefi olup olmadığını kontrol eder.
-	 * @param {string} taxNumber - Vergi numarası
-	 * @returns {Promise<boolean>} - Mükellefin e-fatura mükellefi olup olmadığı
+	 * Checks if a taxpayer is an e-invoice taxpayer.
+	 * @param {string} taxNumber - Tax number
+	 * @returns {Promise<ApiResponse<any[]>>} - Information about taxpayer's e-invoice status with curl command
 	 */
-	async checkIfGlobalCustomer(taxNumber: string): Promise<any[]> {
+	async checkIfGlobalCustomer(taxNumber: string): Promise<ApiResponse<any[]>> {
 		const url = GENERAL_ENDPOINTS.GLOBAL_COMPANY.CHECK_BY_TAX(taxNumber);
-		return this.apiClient.get<any[]>(url);
+		return await this.apiClient.get<any[]>(url);
 	}
 }

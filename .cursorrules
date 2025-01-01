@@ -1,0 +1,110 @@
+**General Principles**
+
+- Use modular architecture for better scalability and maintainability.
+- Encapsulate the application logic in services and separate concerns.
+- Write clean, readable, and maintainable code adhering to SOLID principles.
+- Prefer TypeScript over JavaScript for type safety and better tooling support.
+- Document all public classes, methods, and modules using JSDoc.
+- Implement comprehensive error handling and logging.
+- Ensure the application adheres to security best practices.
+
+**Folder Structure**
+
+- Use consistent naming conventions: kebab-case for file and directory names, camelCase for variables, and PascalCase for classes.
+
+**Module Design**
+
+- Each module should encapsulate a single feature or domain.
+- Modules should expose only the necessary providers and imports.
+- Use dependency injection to manage dependencies between services.
+
+**Controllers**
+
+- Use controllers to handle incoming requests and return responses.
+- Keep controllers lightweight; delegate business logic to services.
+- Use descriptive route names and HTTP methods.
+- Use DTOs (Data Transfer Objects) for request validation and type safety.
+- Document controller methods with JSDoc or Swagger annotations.
+
+**Services**
+
+- Encapsulate all business logic in services.
+- Use Dependency Injection to manage dependencies.
+- Write small, focused methods that perform a single task.
+- Ensure proper separation of concerns; avoid mixing database logic with business logic.
+
+**Data Validation**
+
+- Use `class-validator` and `class-transformer` for validating and transforming incoming data.
+- Define DTOs (Data Transfer Objects) for each endpoint.
+- Validate input at the controller level using the `@Body()`, `@Param()`, and `@Query()` decorators.
+- Use pipes for global or custom validation logic.
+
+**Database Integration**
+
+- Encapsulate database logic within repositories or dedicated services.
+- Define entities with proper relationships and constraints.
+- Use migrations for schema changes and version control.
+
+**Error Handling**
+
+- Use global filters (e.g., `@Catch()`) to handle exceptions.
+- Define custom exceptions for specific use cases.
+- Return meaningful error messages and HTTP status codes.
+- Log errors using a logging service or library (e.g., `winston` or NestJS Logger).
+
+**Security Best Practices**
+
+- Use `helmet` for setting secure HTTP headers.
+- Implement rate limiting using `nestjs-rate-limiter` or similar libraries.
+- Sanitize user inputs to prevent SQL injection or XSS attacks.
+- Use environment variables to store sensitive information (e.g., database credentials, API keys).
+- Implement authentication and authorization using Passport.js or JWT strategies.
+
+**Performance Optimization**
+
+- Enable caching for frequently accessed data using the `CacheModule`.
+- Use interceptors to handle cross-cutting concerns (e.g., logging, transformation).
+- Optimize database queries using indexes and efficient relationships.
+- Use lazy loading for modules and services where applicable.
+
+**Testing**
+
+- Write unit tests for services and controllers using Jest.
+- Follow the Arrange-Act-Assert pattern for test structure.
+- Use test doubles (e.g., mocks, stubs, spies) for dependencies.
+- Write e2e (end-to-end) tests to validate the complete application flow.
+- Organize test files alongside the feature they belong to, e.g., `feature-name.controller.spec.ts`.
+
+**Configuration Management**
+
+- Use the `@nestjs/config` module for managing configuration.
+- Store environment-specific settings in `.env` files.
+- Avoid hardcoding configuration values; use environment variables instead.
+- Validate configuration values using `class-validator` and a dedicated configuration schema.
+
+**Event-Driven Architecture**
+
+- Use the `EventEmitterModule` for handling events within the application.
+- Define event classes to encapsulate event data.
+- Use a message broker like RabbitMQ or Kafka for distributed systems.
+
+**Swagger Documentation**
+
+- Use `@nestjs/swagger` to generate API documentation.
+- Annotate controllers and DTOs with Swagger decorators.
+- Include details for endpoints, request bodies, query parameters, and responses.
+- Host the Swagger UI at a dedicated endpoint, e.g., `/api/docs`.
+
+**Logging**
+
+- Use NestJS' Logger for application-wide logging.
+- Implement a centralized logging service for consistency.
+- Configure logging levels (e.g., debug, info, error) based on the environment.
+- Log important events and errors with sufficient context information.
+
+**Asynchronous Operations**
+
+- Use async/await for asynchronous operations.
+- Leverage RxJS observables for reactive programming where appropriate.
+- Use queues (e.g., Bull) for background tasks and job processing.
