@@ -1,6 +1,6 @@
 {
 	"name": "@montarist/nilvera-api",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "An unofficial SDK for integrating with Nilvera e-Invoice, e-Archive services",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
