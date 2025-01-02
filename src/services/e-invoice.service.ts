@@ -3,6 +3,7 @@ import {
 	CreateBulkDraftRequest,
 	CreateDraftRequest,
 	CreateDraftResponse,
+	CreateEInvoiceModelRequest,
 	DraftConfirmRequest,
 	DraftModelResponse,
 	DraftRequest,
@@ -11,16 +12,16 @@ import {
 	EditAndSendDraftResponse,
 	ExportType,
 	OperationType,
-	TagInfo,
+	TagInfo
 } from '../constants/types';
 import { ApiResponse } from '../types';
 import { BaseService } from './base.service';
 
 /**
- * DraftEInvoiceService
+ * EInvoiceService
  * Service for managing draft e-invoice operations.
  */
-export class DraftEInvoiceService extends BaseService {
+export class EInvoiceService extends BaseService {
 	/**
 	 * Lists draft invoices by sending a request to the API.
 	 * @param {DraftRequest} params - Query parameters
@@ -161,6 +162,16 @@ export class DraftEInvoiceService extends BaseService {
 				Accept: 'text/plain',
 			},
 		});
+	}
+
+	/**
+	 * Creates a new invoice model.
+	 * @param {CreateDraftEArchiveInvoiceRequest} createDraftRequest - Details of the draft invoice to be created
+	 * @returns {Promise<ApiResponse<string>>} - UUID and invoice number of created draft invoice with curl command
+	 */
+	async createEInvoiceModel(createEInvoiceModelRequest: CreateEInvoiceModelRequest): Promise<ApiResponse<string>> {
+		const url = EINVOICE_ENDPOINTS.SEND.MODEL;
+		return await this.apiClient.post<string>(url, createEInvoiceModelRequest);
 	}
 
 	/**

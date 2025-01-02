@@ -1,5 +1,5 @@
 import { NilveraApiClient } from '../src/NilveraApiClient';
-import { ApiClient, DraftEInvoiceService, EArchiveService, GeneralService, OldInvoiceService } from '../src/services';
+import { ApiClient, EArchiveService, EInvoiceService, GeneralService, OldInvoiceService } from '../src/services';
 
 describe('NilveraApiClient', () => {
 	const apiKey = 'test-api-key';
@@ -14,9 +14,9 @@ describe('NilveraApiClient', () => {
 		expect(client['apiClient']).toBeInstanceOf(ApiClient);
 	});
 
-	it('should return an instance of DraftEInvoiceService', () => {
-		const draftEInvoiceService = client.draftEInvoice;
-		expect(draftEInvoiceService).toBeInstanceOf(DraftEInvoiceService);
+	it('should return an instance of EInvoiceService', () => {
+		const eInvoiceService = client.draftEInvoice;
+		expect(eInvoiceService).toBeInstanceOf(EInvoiceService);
 	});
 
 	it('should return an instance of EArchiveService', () => {
@@ -34,7 +34,7 @@ describe('NilveraApiClient', () => {
 		expect(generalService).toBeInstanceOf(GeneralService);
 	});
 
-	it('should throw an error if API client is not initialized for DraftEInvoiceService', () => {
+	it('should throw an error if API client is not initialized for EInvoiceService', () => {
 		client['apiClient'] = undefined;
 		expect(() => client.draftEInvoice).toThrow('API client not initialized');
 	});

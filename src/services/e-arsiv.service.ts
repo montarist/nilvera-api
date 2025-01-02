@@ -3,6 +3,7 @@ import {
 	CreateBulkDraftInvoiceRequest,
 	CreateDraftEArchiveInvoiceRequest,
 	CreateDraftEArchiveInvoiceResponse,
+	CreateInvoiceModelRequest,
 	DraftEArchiveInvoiceRequest,
 	DraftEArchiveInvoiceResponse,
 	EARCHIVE_ENDPOINTS,
@@ -115,6 +116,16 @@ export class EArchiveService extends BaseService {
 	async createBulkDraftInvoices(createBulkRequest: CreateBulkDraftInvoiceRequest): Promise<ApiResponse<string[]>> {
 		const url = EARCHIVE_ENDPOINTS.DRAFT.CREATE_BULK;
 		return await this.apiClient.post<string[]>(url, createBulkRequest);
+	}
+
+	/**
+	 * Creates a new invoice model.
+	 * @param {CreateDraftEArchiveInvoiceRequest} createDraftRequest - Details of the draft invoice to be created
+	 * @returns {Promise<ApiResponse<string>>} - UUID and invoice number of created draft invoice with curl command
+	 */
+	async createInvoiceModel(createInvoiceModelRequest: CreateInvoiceModelRequest): Promise<ApiResponse<string>> {
+		const url = EARCHIVE_ENDPOINTS.SEND.MODEL;
+		return await this.apiClient.post<string>(url, createInvoiceModelRequest);
 	}
 
 	/**

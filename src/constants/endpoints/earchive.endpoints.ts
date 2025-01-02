@@ -28,6 +28,9 @@ export const EARCHIVE_ENDPOINTS = {
 		XML: (uuid: string) => `/earchive/Invoices/${uuid}/xml`, // GET - Faturanın XML formatını indirir
 		DETAIL: (uuid: string) => `/earchive/Invoices/${uuid}`, // GET - Fatura detaylarını getirir
 	},
+	SEND: {
+		MODEL: '/earchive/Send/Model', // POST - Fatura modeli oluşturur
+	},
 	REPORT: {
 		LIST: '/earchive/Report', // GET - Raporları listeler
 		DETAIL: (uuid: string) => `/earchive/Report/${uuid}`, // GET - Rapor detaylarını getirir

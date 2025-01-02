@@ -49,4 +49,7 @@ export const EINVOICE_ENDPOINTS = {
 		PDF: (uuid: string) => `/einvoice/Purchase/${uuid}/pdf`, // GET - PDF dosyasını indirir
 		XML: (uuid: string) => `/einvoice/Purchase/${uuid}/xml`, // GET - XML dosyasını indirir
 	},
+	SEND: {
+		MODEL: '/einvoice/Send/Model', // POST - Fatura modeli oluşturur
+	},
 };

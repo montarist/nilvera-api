@@ -1,4 +1,4 @@
-import { ApiClient, DraftEInvoiceService, EArchiveService, GeneralService, OldInvoiceService } from './services';
+import { ApiClient, EArchiveService, EInvoiceService, GeneralService, OldInvoiceService } from './services';
 
 /**
  * @class NilveraApiClient
@@ -7,7 +7,7 @@ import { ApiClient, DraftEInvoiceService, EArchiveService, GeneralService, OldIn
  */
 export class NilveraApiClient {
 	private apiClient?: ApiClient;
-	private draftEInvoiceService?: DraftEInvoiceService;
+	private eInvoiceService?: EInvoiceService;
 	private earchiveService?: EArchiveService;
 	private oldInvoiceService?: OldInvoiceService;
 	private generalService?: GeneralService;
@@ -24,15 +24,15 @@ export class NilveraApiClient {
 	/**
 	 * @getter
 	 * @description Access master data operations
-	 * @returns {DraftEInvoiceService} Instance of DraftEInvoiceService
+	 * @returns {EInvoiceService} Instance of EInvoiceService
 	 * @throws {Error} If API client is not initialized
 	 */
-	get draftEInvoice(): DraftEInvoiceService {
-		if (!this.draftEInvoiceService) {
+	get eInvoice(): EInvoiceService {
+		if (!this.eInvoiceService) {
 			if (!this.apiClient) throw new Error('API client not initialized');
-			this.draftEInvoiceService = new DraftEInvoiceService(this.apiClient);
+			this.eInvoiceService = new EInvoiceService(this.apiClient);
 		}
-		return this.draftEInvoiceService;
+		return this.eInvoiceService;
 	}
 
 	/**

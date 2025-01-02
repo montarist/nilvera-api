@@ -3,6 +3,11 @@ export interface CreateDraftRequest {
 	CustomerAlias: string;
 }
 
+export interface CreateEInvoiceModelRequest {
+	EInvoice: EInvoice;
+	CustomerAlias: string;
+}
+
 export interface EInvoice {
 	InvoiceInfo: InvoiceInfo;
 	CompanyInfo: CompanyInfo;

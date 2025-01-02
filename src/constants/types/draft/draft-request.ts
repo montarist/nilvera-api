@@ -7,7 +7,7 @@ export interface DraftRequest {
 }
 
 /**
- * DraftEInvoiceService
+ * EInvoiceService
  * Taslak faturalarla ilgili işlemleri yöneten servis.
  */
 export interface DraftConfirmRequest {

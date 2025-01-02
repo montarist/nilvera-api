@@ -4,6 +4,10 @@ export interface CreateDraftEArchiveInvoiceRequest {
 	ArchiveInvoice: ArchiveInvoiceDto;
 }
 
+export interface CreateInvoiceModelRequest {
+	ArchiveInvoice: ArchiveInvoiceDto;
+}
+
 export interface ArchiveInvoiceDto {
 	InvoiceInfo: InvoiceInfoArchiveInvoiceInfoDto;
 	CompanyInfo: PartyInfoDto;
