@@ -7,7 +7,7 @@ import {
 	DraftEArchiveInvoiceRequest,
 	DraftEArchiveInvoiceResponse,
 	EARCHIVE_ENDPOINTS,
-	ExportType,
+	ExportType
 } from '../constants';
 import { ApiResponse } from '../types';
 import { BaseService } from './base.service';
@@ -121,11 +121,11 @@ export class EArchiveService extends BaseService {
 	/**
 	 * Creates a new invoice model.
 	 * @param {CreateDraftEArchiveInvoiceRequest} createDraftRequest - Details of the draft invoice to be created
-	 * @returns {Promise<ApiResponse<string>>} - UUID and invoice number of created draft invoice with curl command
+	 * @returns {Promise<ApiResponse<CreateDraftEArchiveInvoiceResponse>>} - UUID and invoice number of created draft invoice with curl command
 	 */
-	async createInvoiceModel(createInvoiceModelRequest: CreateInvoiceModelRequest): Promise<ApiResponse<string>> {
+	async createInvoiceModel(createInvoiceModelRequest: CreateInvoiceModelRequest): Promise<ApiResponse<CreateDraftEArchiveInvoiceResponse>> {
 		const url = EARCHIVE_ENDPOINTS.SEND.MODEL;
-		return await this.apiClient.post<string>(url, createInvoiceModelRequest);
+		return await this.apiClient.post<CreateDraftEArchiveInvoiceResponse>(url, createInvoiceModelRequest);
 	}
 
 	/**

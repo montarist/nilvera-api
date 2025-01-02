@@ -4,6 +4,7 @@ import {
 	CreateDraftRequest,
 	CreateDraftResponse,
 	CreateEInvoiceModelRequest,
+	CreateEInvoiceModelResponse,
 	DraftConfirmRequest,
 	DraftModelResponse,
 	DraftRequest,
@@ -169,9 +170,9 @@ export class EInvoiceService extends BaseService {
 	 * @param {CreateDraftEArchiveInvoiceRequest} createDraftRequest - Details of the draft invoice to be created
 	 * @returns {Promise<ApiResponse<string>>} - UUID and invoice number of created draft invoice with curl command
 	 */
-	async createEInvoiceModel(createEInvoiceModelRequest: CreateEInvoiceModelRequest): Promise<ApiResponse<string>> {
+	async createEInvoiceModel(createEInvoiceModelRequest: CreateEInvoiceModelRequest): Promise<ApiResponse<CreateEInvoiceModelResponse>> {
 		const url = EINVOICE_ENDPOINTS.SEND.MODEL;
-		return await this.apiClient.post<string>(url, createEInvoiceModelRequest);
+		return await this.apiClient.post<CreateEInvoiceModelResponse>(url, createEInvoiceModelRequest);
 	}
 
 	/**
