@@ -1,6 +1,6 @@
 {
 	"name": "@montarist/nilvera-api",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "An unofficial SDK for integrating with Nilvera e-Invoice, e-Archive services",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
@@ -38,7 +38,7 @@
 	},
 	"devDependencies": {
 		"@types/jest": "^29.5.14",
-		"@types/node": "^22.10.2",
+		"@types/node": "^22.15.32",
 		"@typescript-eslint/eslint-plugin": "^5.0.0",
 		"@typescript-eslint/parser": "^5.0.0",
 		"eslint": "^8.50.0",
