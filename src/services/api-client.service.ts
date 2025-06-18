@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { NilveraApiError } from '../constants/errors/nilvera-api.error';
+import { Mode } from '../types';
 
 interface NilveraErrorResponse {
 	message: string;
@@ -36,6 +37,7 @@ type ApiResponse<T> = {
 export class ApiClient {
 	/** @private The axios instance used for making HTTP requests */
 	private client: AxiosInstance;
+	private mode: Mode;
 	private lastCurlCommand: string = '';
 	private retryConfig: RetryConfig;
 
@@ -48,9 +50,11 @@ export class ApiClient {
 	constructor(
 		baseUrl: string,
 		private apiKey: string,
+		mode: Mode = Mode.DEVELOPMENT,
 		retryConfig?: Partial<RetryConfig>
 	) {
 		this.retryConfig = { ...DEFAULT_RETRY_CONFIG, ...retryConfig };
+		this.mode = mode;
 		this.client = axios.create({
 			baseURL: baseUrl,
 			headers: {
@@ -115,14 +119,18 @@ export class ApiClient {
 					break;
 				}
 
-				console.log(`Attempt ${attempt} failed for ${operationName}. Retrying in ${this.retryConfig.retryDelay}ms...`);
+				if (this.mode === Mode.DEVELOPMENT) {
+					console.log(`Attempt ${attempt} failed for ${operationName}. Retrying in ${this.retryConfig.retryDelay}ms...`);
+				}
 				await this.sleep(this.retryConfig.retryDelay);
 				attempt++;
 			}
 		}
 
 		if (lastError) {
-			console.log(`All retry attempts failed for ${operationName}`);
+			if (this.mode === Mode.DEVELOPMENT) {
+				console.log(`All retry attempts failed for ${operationName}`);
+			}
 			throw this.handleAxiosError(lastError as AxiosError<NilveraErrorResponse>);
 		}
 
@@ -214,14 +222,18 @@ export class ApiClient {
 			});
 
 			this.lastCurlCommand = this.generateCurlCommand(config);
-			console.log('Request Curl Command:', this.lastCurlCommand);
+			if (this.mode === Mode.DEVELOPMENT) {
+				console.log('Request Curl Command:', this.lastCurlCommand);
+			}
 
 			return config;
 		});
 
 		this.client.interceptors.response.use(
 			(response: AxiosResponse) => {
-				console.log('Response Status:', response.status);
+				if (this.mode === Mode.DEVELOPMENT) {
+					console.log('Response Status:', response.status);
+				}
 				return {
 					...response,
 					data: {

@@ -1,4 +1,5 @@
 import { ApiClient, EArchiveService, EInvoiceService, GeneralService, OldInvoiceService } from './services';
+import { Mode } from './types';
 
 /**
  * @class NilveraApiClient
@@ -17,8 +18,8 @@ export class NilveraApiClient {
 	 * @param {string} baseUrl - Base URL of the Nilvera API
 	 * @param {string} apiKey - The API key for authentication
 	 */
-	constructor(baseUrl: string, apiKey: string) {
-		this.apiClient = new ApiClient(baseUrl, apiKey);
+	constructor(baseUrl: string, apiKey: string, mode: Mode) {
+		this.apiClient = new ApiClient(baseUrl, apiKey, mode);
 	}
 
 	/**
